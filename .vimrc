@@ -1,5 +1,3 @@
-" Hello，我是PowerVim的作者，程序员Carl，欢迎关注我的微信公众号：代码随想录 
-"
 " 定义快捷键的前缀，即<Leader>
 let mapleader=";"
 
@@ -245,31 +243,38 @@ let g:tlist_markdown_settings = 'markdown;h:Headlins'
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.Java,*.go exec ":call SetTitle()"
 """定义函数SetTitle，自动插入文件头
 func SetTitle()
-    "如果文件类型为.sh文件
     if &filetype == 'sh'
         call setline(1,"\#########################################################################")
         call append(line("."),   "\# File Name:    ".expand("%"))
-        call append(line(".")+1, "\# Author:       程序员Carl")
-        call append(line(".")+2, "\# mail:         programmercarl@163.com")
-        call append(line(".")+3, "\# Created Time: ".strftime("%c"))
-        call append(line(".")+4, "\#########################################################################")
-        call append(line(".")+5, "\#!/bin/bash")
-        call append(line(".")+6, "")
+        call append(line(".")+1, "\# Created Time: ".strftime("%c"))
+        call append(line(".")+2, "\#########################################################################")
+        call append(line(".")+3, "\#!/bin/bash")
+        call append(line(".")+4, "")
+    elseif &filetype == 'cpp'
+        call setline(1,"\#########################################################################")
+        call append(line("."),   "\# File Name:    ".expand("%"))
+        call setline(1,"\#########################################################################")
+        call append(line("."),   "\# File Name:    ".expand("%"))
+        call append(line(".")+1, "\# Created Time: ".strftime("%c"))
+        call append(line(".")+2, "\#########################################################################")
+        call append(line(".")+3, "")
+        call append(line(".")+4, "#include <iostream>")
+        call append(line(".")+5, "using namespace std;")
+        call append(line(".")+6, "int main(){")
+        call append(line(".")+7, "\/\/code starts here")
+        call append(line(".")+8, "  return 0;")
+        call append(line(".")+9, "}")
     else
         call setline(1, "/* ************************************************************************")
         call append(line("."),   "> File Name:     ".expand("%"))
-        call append(line(".")+1, "> Author:        程序员Carl")
-        call append(line(".")+2, "> 微信公众号:    代码随想录")
-        call append(line(".")+3, "> Created Time:  ".strftime("%c"))
-        call append(line(".")+4, "> Description:   ")
-        call append(line(".")+5, " ************************************************************************/")
-        call append(line(".")+6, "")
+        call append(line(".")+1, "> Created Time:  ".strftime("%c"))
+        call append(line(".")+2, "> Description:   ")
+        call append(line(".")+3, " ************************************************************************/")
+        call append(line(".")+4, "")
     endif
     "新建文件后，自动定位到文件末尾
     autocmd BufNewFile * normal G
 endfunc
-
-
 " shortcut for markdown
 " 创建时间快捷键for markdown
 nmap tm :call SetTime() <CR>
