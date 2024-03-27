@@ -1,4 +1,4 @@
-" 定义快捷键的前缀，即<Leader>
+" define hotkey prefix, <Leader>
 let mapleader=";"
 
 " pathogen plugin manager
@@ -6,9 +6,9 @@ execute pathogen#infect()
 " syntax on
 filetype plugin indent on
 
-"高亮搜索关键词"
+"hightlight search keyword"
 let g:ackhighlight = 1
-"修改快速预览窗口高度为15
+"preview height = 15
 let g:ack_qhandler = "botright copen 15"
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -17,7 +17,7 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 "set autocmd
-set autoindent		" always set autoindenting on 自动缩进
+set autoindent		" always set autoindenting on 
 " indent C++ autoindent private public keyword 
 set cindent
 set cinoptions=g-1
@@ -32,7 +32,7 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
-"设置非兼容模式
+"no compatiable mode
 set nocp
 
 "set encoding=utf-8
@@ -49,44 +49,44 @@ set guioptions-=T
 set expandtab
 
 let curpwd = getcwd()
-" vim自身命令行模式智能补全
+" vim cmd auto complete
 set wildmenu
 
-" 不产生.swp文件
+" do not generate.swp文件
 set noswapfile
 
-" 禁止光标闪烁
+" Turn off cursor blink
 " set gcr=a:block-blinkon0
 
-" ack搜索时不打开第一个搜索文件
+" Do not open first searched file with ack
 map <Leader>fw :Ack! <Space>
-" AckFile不打开第一个搜索文件
+" AckFile will not open 1st searched file
 map <Leader>ff :AckFile!<Space>
-" 定义快捷键 关闭当前分割窗口
+" define hot key, close current splitted window
 nmap <Leader>q :q<CR>
-" 定义快捷键
+" define hot key
 nmap <Leader>w :w<CR>
-" 删除光标所在单词
+" delete current word under the cursor
 nmap e daw
 " close TAB
 nmap tabc :tabc <CR>
 " go to previous table
 map gp :tabp <CR>
-" 定义快捷键 跳转到光标所在关键词的定义处
+" HOTKEY: jump to the definition of the cursor pointing to
 " here are multiple matches, show me a list of all the matching tags 
 nmap <Leader>gt g<C-]>
-" 定义快捷键 跳回原关键词 与 ;gr 配合使用
+" HOTKEY: jump back to original keyword 与 ;gr 配合使用
 nmap <Leader>gr <C-T>
-" 向下翻半屏
+" scroll down half screen
 nmap <Leader>u <C-U>
-" 向上翻半屏
+" scroll up half screen
 nmap <Leader>d <C-D>
-" 快速移动到行首，行尾
+" move to line start & end
 map <Leader>1 ^
 map <Leader>2 $
-" 补全提示
+" autocomplete hint
 ""nmap <Leader>p <C-P>
-" 快速切换C H源文件
+" swithcing C H source file
 nmap <Leader>a :A<CR>
 
 "快速切换到上一个文件
@@ -253,8 +253,6 @@ func SetTitle()
     elseif &filetype == 'cpp'
         call setline(1,"\#########################################################################")
         call append(line("."),   "\# File Name:    ".expand("%"))
-        call setline(1,"\#########################################################################")
-        call append(line("."),   "\# File Name:    ".expand("%"))
         call append(line(".")+1, "\# Created Time: ".strftime("%c"))
         call append(line(".")+2, "\#########################################################################")
         call append(line(".")+3, "")
@@ -272,7 +270,7 @@ func SetTitle()
         call append(line(".")+3, " ************************************************************************/")
         call append(line(".")+4, "")
     endif
-    "新建文件后，自动定位到文件末尾
+    "locate to eof after created new file
     autocmd BufNewFile * normal G
 endfunc
 " shortcut for markdown
@@ -315,11 +313,9 @@ func SetCC()
     call append(line("."), "// vim: et tw=100 ts=4 sw=4 cc=120")  
 endfunc
 
-" Hello，我是PowerVim的作者，程序员Carl，欢迎关注我的微信公众号：代码随想录 
-
-" 使用的背景主题
+" Color theme
 colorscheme Monokai_Gavin
-" 添加自动补全字典
+" Auto complete keywords list
 au FileType php setlocal dict+=~/.vim/dictionary/php_keywords_list.txt
 au FileType cpp setlocal dict+=~/.vim/dictionary/cpp_keywords_list.txt
 au FileType java setlocal dict+=~/.vim/dictionary/java_keywords_list.txt
